@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: "Feature"
+  geometry: {
+              "type": "Point",
+              "coordinates": [40.4087357,-3.7081466]
+            }
+  properties: {
+                "name": "El Rastro",
+                "opening_hours": {
+                                      "mo": [],
+                                      "tu": [],
+                                      "we": [],
+                                      "th": [],
+                                      "fr": [],
+                                      "sa": [],
+                                      "su": ["09:00-15:00"]
+                                  },
+                "hours_spent": 2.5,
+                "category": "shopping",
+                "location": "outdoors",
+                "district": "centro"
+              }
+
+two:
+  type:
+  geometry:
+  properties:
