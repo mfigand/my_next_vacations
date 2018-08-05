@@ -32,7 +32,7 @@ Features
 
 * When starts the rails server the config/initializers/seed_db.rb file loads the data from db/seeds.rb
 
-* db/seeds.rb file load public/files/madrid.json file and populates Database creating available activities in GeoJSON format
+* The db/seeds.rb file load public/files/madrid.json file and populates Database creating available activities in GeoJSON format.
 
 
 ## 2. Create an endpoint that returns all available activities
@@ -41,22 +41,28 @@ Features
 
 * You can filter by category, location or district passing a filter through this endpoints:
 
-  get '/available_activities/category/:category'
-  get '/available_activities/location/:location'
-  get '/available_activities/district/:district'
+  - get '/available_activities/category/:category'
 
-*  If no filter is provided, it list all activities
+  - get '/available_activities/location/:location'
 
-  get '/available_activities'
+  - get '/available_activities/district/:district'
+
+*  If no filter is provided, it list all activities:
+
+  - get '/available_activities'
 
 ## 3. Create an endpoint to recommend what to do at a given time
 
-* The endpoint '/available_activities/category/:category/between/:opening_hours' receives a time range (in this format '09:00-15:00') that the vacation-goer has available to perform an activity and the preferred category (like this 'nature') and return a single activity and all its details, in GeoJSON format, that belong to the specified category and be open to the public at the time of visit. If there are multiple options, return the one with the longest visit time that fits in the time range.
+* The endpoint '/available_activities/category/:category/between/:opening_hours' receives a time range (in this format '09:00-15:00') that the vacation-goer has available to perform an activity and the preferred category (like this 'nature')
+
+* And return a single activity and all its details, in GeoJSON format, that belong to the specified category and be open to the public at the time of visit.
+
+* If there are multiple options, return the one with the longest visit time that fits in the time range.
 
 
-## Future extended functionality
+## 4. Future extended functionality
 
-* Do not recommend an outdoors activity on a rainy day
+### Do not recommend an outdoors activity on a rainy day
 
 To implement this features we could integrate a third party API like openweathermap.org were we can send the latitud and longitud and recive wheather information.
 
@@ -65,40 +71,28 @@ As an example we can parse latitud and longitud from our model AvailableActivit.
 To integrate third party APIs to our rails app we could use gem 'dotenv-rails' and gem 'faraday'. We need dotenv-rails, to keep the API token as an environment variable, and faraday to make requests to Spoonacular API.
 
 
-* Support getting information about activities in multiple cities
+### Support getting information about activities in multiple cities
 
-Create other endpoint that receives as parameter multiple cities coordinates:
+* Create other endpoint that receives as parameter multiple cities coordinates:
 
-  get '/available_activities/multi_coordenates/:multi_coordenates'
+  - get '/available_activities/multi_coordenates/:multi_coordenates'
 
-And other endpoint that receives as parameter multiple cities names:
+* And other endpoint that receives as parameter multiple cities names:
 
-  get '/available_activities/multi_city/:multi_city'
+  - get '/available_activities/multi_city/:multi_city'
 
 This way allows the user to filter activities by coordinates or by name.
 
 The response will be all the available_activities that math this parameters and will be deliver in GeoJSON format.
 
 
-* Extend the recommendation API to fill the given time range with multiple activities
+### Extend the recommendation API to fill the given time range with multiple activities
 
-We could add an optional parameter to the recommendation endpoint like this:
+* We could add an optional parameter to the recommendation endpoint like this:
 
-  get '/available_activities/category/:category/between/:opening_hours/all/:all'
+  - get '/available_activities/category/:category/between/:opening_hours/all/:all'
 
 Then if user pass this param as true (:all => true) the response will return ALL available_activities that match conditions instead of return only the activity with the longest visit time
-
-
-
-
-Requirements
-------------
-
-* ruby-2.5.0
-
-* rails 5.2.0
-
-* MongoDB version v3.6.6
 
 
 Author
